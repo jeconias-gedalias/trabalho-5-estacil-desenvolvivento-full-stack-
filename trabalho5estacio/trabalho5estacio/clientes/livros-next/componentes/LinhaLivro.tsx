@@ -1,18 +1,18 @@
 import React from 'react';
 import ControleEditora, { editoras } from '../classes/controle/ControleEditora';
 import Livro from '../classes/modelo/Livro';
-import styles from '../styles/Home.module.css'; // Importando os estilos
+import styles from '../styles/Home.module.css'; 
 
 const controleEditora = new ControleEditora(editoras);
 
 interface LinhaLivroProps {
-    livro: Livro; // O livro que será exibido
-    excluir: (codigo: string) => void; // Função de exclusão para o livro, agora com código do tipo String
+    livro: Livro; 
+    excluir: (codigo: string) => void; 
 }
 
 export const LinhaLivro: React.FC<LinhaLivroProps> = (props) => {
     const { livro, excluir } = props;
-    const nomeEditora = controleEditora.getNomeEditora(livro.codEditora); // Obtém o nome da editora
+    const nomeEditora = controleEditora.getNomeEditora(livro.codEditora); 
 
     return (
         <tr>
