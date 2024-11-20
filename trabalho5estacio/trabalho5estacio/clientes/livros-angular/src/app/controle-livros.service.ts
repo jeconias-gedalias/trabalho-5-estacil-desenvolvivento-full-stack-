@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import {Livro}  from './livro';
 
-const baseURL = "http://localhost:3030/livros"; // Endereço do servidor Express
+const baseURL = "http://localhost:3030/livros"; 
 
-// Interface para compatibilizar o tipo Livro com as chamadas para o servidor
+
 interface LivroMongo {
-  _id?: string;  // ID gerado pelo MongoDB, pode ser opcional
+  _id?: string;  
   codEditora: number;
   titulo: string;
   resumo: string;
@@ -20,7 +20,7 @@ export class ControleLivrosService {
 
   constructor() { }
 
-  // Método assíncrono para obter os livros
+
   async obterLivros(): Promise<Livro[]> {
     try {
       const response = await fetch(baseURL);
@@ -31,9 +31,9 @@ export class ControleLivrosService {
 
       const livrosMongo: LivroMongo[] = await response.json();
 
-      // Mapear os dados para a classe Livro
+     
       return livrosMongo.map(livro => ({
-        _id: livro._id || '',  // Usando o _id gerado pelo banco
+        _id: livro._id || '',  
         codEditora: livro.codEditora,
         titulo: livro.titulo,
         resumo: livro.resumo,
@@ -45,7 +45,7 @@ export class ControleLivrosService {
     }
   }
 
-  // Método assíncrono para excluir um livro
+  
   async excluir(codigo: string): Promise<boolean> {
     try {
       const response = await fetch(`${baseURL}/${codigo}`, {
@@ -57,17 +57,17 @@ export class ControleLivrosService {
       }
 
       const data = await response.json();
-      return data.ok || false;  // Retorna 'true' ou 'false' dependendo do sucesso
+      return data.ok || false; 
     } catch (error) {
       console.error("Erro ao excluir livro:", error);
       return false;
     }
   }
 
-  // Método assíncrono para incluir um livro
+ 
   async incluir(livro: Livro): Promise<boolean> {
     try {
-      // Converter livro para o formato LivroMongo
+     
       const livroMongo: LivroMongo = {
         codEditora: livro.codEditora,
         titulo: livro.titulo,
@@ -88,7 +88,7 @@ export class ControleLivrosService {
       }
 
       const data = await response.json();
-      return data.ok || false;  // Retorna 'true' ou 'false' dependendo do sucesso
+      return data.ok || false; 
     } catch (error) {
       console.error("Erro ao incluir livro:", error);
       return false;
