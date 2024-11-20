@@ -2,7 +2,7 @@ import Livro from "../modelo/Livro";
 
 const baseURL = "http://localhost:3030/livros";
 
-// Definir a interface LivroMongo para compatibilizar os dados do livro com as chamadas para o servidor
+
 interface LivroMongo {
     _id: string;
     titulo: string;
@@ -11,9 +11,9 @@ interface LivroMongo {
     autores: string[];
 }
 
-// Classe ControleLivros, responsável por gerenciar as ações de livros
+
 export class ControleLivro {
-    // Método para obter os livros do servidor de forma assíncrona
+   
     public async obterLivros(): Promise<Livro[]> {
         try {
             const response = await fetch(baseURL);
@@ -24,7 +24,7 @@ export class ControleLivro {
 
             const livrosMongo: LivroMongo[] = await response.json();
 
-            // Mapear os dados de LivroMongo para a classe Livro
+           
             return livrosMongo.map(
                 (livro) =>
                     new Livro(
@@ -41,7 +41,7 @@ export class ControleLivro {
         }
     }
 
-    // Método para excluir um livro baseado no código (ID) do livro
+   ID) do livro
     public async excluir(codigo: string): Promise<boolean> {
         try {
             const response = await fetch(`${baseURL}/${codigo}`, {
@@ -52,7 +52,7 @@ export class ControleLivro {
                 throw new Error(`Falha ao excluir livro: ${response.statusText}`);
             }
 
-            // Considerando que o backend retorna { ok: true/false }
+           
             const data = await response.json();
             return data.ok || false;
         } catch (error) {
@@ -61,10 +61,10 @@ export class ControleLivro {
         }
     }
 
-    // Método para incluir um livro no servidor
+   
     public async incluir(livro: Livro): Promise<boolean> {
         try {
-            // Convertendo Livro para LivroMongo
+         
             const livroMongo: Omit<LivroMongo, '_id'> = {
                 codEditora: livro.codEditora,
                 titulo: livro.titulo,
