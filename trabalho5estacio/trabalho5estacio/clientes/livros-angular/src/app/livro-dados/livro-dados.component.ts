@@ -31,13 +31,13 @@ export class LivroDadosComponent implements OnInit {
   incluir = () => {
     this.livro.autores = this.autoresForm.split('\n');
     
-    // Chama o método incluir do serviço ControleLivrosService
+   
     this.servLivros.incluir(this.livro).then(() => {
-      // Navega para a página de lista após o sucesso da inclusão
+    
       this.router.navigateByUrl('/lista');
     }).catch((erro) => {
       console.error('Erro ao incluir livro:', erro);
-      // Aqui você pode adicionar um tratamento de erro, se necessário
+   
     });
   };
 }
