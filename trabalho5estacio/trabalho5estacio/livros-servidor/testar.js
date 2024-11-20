@@ -1,6 +1,6 @@
 const Livro = require('./modelo/livro-schema');
 
-// Cria um novo livro
+
 const novoLivro = new Livro({
   titulo: "Core Java for the Impatient",
   codEditora: 3,
@@ -8,7 +8,7 @@ const novoLivro = new Livro({
   autores: ["Cay Horstmann"]
 });
 
-// Salva o livro no banco de dados
+
 novoLivro.save()
   .then(() => console.log('Livro adicionado com sucesso!'))
   .catch((err) => console.error('Erro ao adicionar livro:', err));
