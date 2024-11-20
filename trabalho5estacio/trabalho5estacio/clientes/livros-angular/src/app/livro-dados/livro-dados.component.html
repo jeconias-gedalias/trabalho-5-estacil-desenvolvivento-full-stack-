@@ -1,0 +1,63 @@
+<main class="container mt-4">
+  <h1 class="mb-4 text-center text-primary">Dados do Livro</h1>
+  <form (submit)="incluir()" ngNativeValidate>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="titulo" class="form-label fw-bold">Título</label>
+        <input
+          type="text"
+          id="titulo"
+          class="form-control"
+          [(ngModel)]="livro.titulo"
+          name="titulo"
+          placeholder="Digite o título do livro"
+          required
+        />
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label for="editora" class="form-label fw-bold">Editora</label>
+        <select
+          id="editora"
+          class="form-select"
+          [(ngModel)]="livro.codEditora"
+          name="editora"
+          required
+        >
+          <option value="" disabled selected>Selecione uma editora</option>
+          <option *ngFor="let editora of editoras" [value]="editora.codEditora">
+            {{ editora.nome }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="resumo" class="form-label fw-bold">Resumo</label>
+      <textarea
+        id="resumo"
+        class="form-control"
+        [(ngModel)]="livro.resumo"
+        name="resumo"
+        rows="3"
+        placeholder="Escreva um breve resumo do livro"
+      ></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="autores" class="form-label fw-bold">Autores (1 por linha)</label>
+      <textarea
+        id="autores"
+        class="form-control"
+        [(ngModel)]="autoresForm"
+        name="autores"
+        rows="3"
+        placeholder="Digite os nomes dos autores, um por linha"
+      ></textarea>
+    </div>
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary btn-lg px-5">Salvar Dados</button>
+    </div>
+  </form>
+</main>
